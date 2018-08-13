@@ -37,6 +37,7 @@ set(SRC_FILES
 )
 
 include_directories (.)
+include_directories (./../wiringPi)
 
 
 if ("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU")

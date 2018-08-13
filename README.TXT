@@ -24,3 +24,14 @@ is by sending an email to projects@drogon.net
 Thanks!
 
   -Gordon
+  
+  
+CMake
+
+  create build folder
+  git clone https://github.com/jwinarske/wiringPi.git
+  mkdir build
+  cd build
+  cmake ../wiringPi -DCMAKE_TOOLCHAIN_FILE=/home/joel/rbpi/tools/build/cmake/toolchain.cmake
+  make -j17
+  

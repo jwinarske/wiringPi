@@ -28,8 +28,8 @@ project(wiringPiD LANGUAGES C)
 set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
 find_package(Threads REQUIRED)
 
-find_library(WIRINGPI_LIB wiringPi HINTS "${CMAKE_INSTALL_PREFIX}/lib")
-find_library(WIRINGPIDEV_LIB wiringPiDev HINTS "${CMAKE_INSTALL_PREFIX}/lib")
+find_library(WIRINGPI_LIB wiringPi HINTS "${CMAKE_INSTALL_PREFIX}/lib" 
+    CMAKE_FIND_ROOT_PATH_BOTH)
 
 set(SRC_FILES
   wiringpid.c
@@ -39,7 +39,7 @@ set(SRC_FILES
 )
 
 include_directories (.)
-
+include_directories (./../wiringPi)
 
 if ("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU")
   add_definitions(-D_GNU_SOURCE)
@@ -47,8 +47,7 @@ endif()
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -Winline -pipe")
 
-
 add_executable(wiringpid ${SRC_FILES})
-target_link_libraries(wiringpid ${WIRINGPIDEV_LIB} ${WIRINGPI_LIB} ${CMAKE_THREAD_LIBS_INIT} -lrt -lm -lcrypt)
+target_link_libraries(wiringpid ${WIRINGPI_LIB} ${CMAKE_THREAD_LIBS_INIT} -lrt -lm -lcrypt)
 install(TARGETS ${name} DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
 

@@ -25,6 +25,15 @@ cmake_minimum_required(VERSION 3.0)
 
 project(wiringPi LANGUAGES C)
 
+# Version
+file(READ "${CMAKE_SOURCE_DIR}/version.h" WIRINGPI_VERSION)
+string(REGEX MATCH "define VERSION_MAJOR ([0-9]*)" _ ${WIRINGPI_VERSION})
+set(WIRINGPI_VERSION_MAJOR ${CMAKE_MATCH_1})
+string(REGEX MATCH "define VERSION_MINOR ([0-9]*)" _ ${WIRINGPI_VERSION})
+set(WIRINGPI_VERSION_MINOR ${CMAKE_MATCH_1})
+message("Building WiringPi Version: ${WIRINGPI_VERSION_MAJOR}.${WIRINGPI_VERSION_MINOR}")
+
+
 include (ExternalProject)
 
 set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/out)

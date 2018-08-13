@@ -28,14 +28,18 @@ project(gpio LANGUAGES C)
 set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
 find_package(Threads REQUIRED)
 
-find_library(WIRINGPI_LIB wiringPi HINTS "${CMAKE_INSTALL_PREFIX}/lib")
-find_library(WIRINGPIDEV_LIB wiringPiDev HINTS "${CMAKE_INSTALL_PREFIX}/lib")
+find_library(WIRINGPI_LIB wiringPi HINTS "${CMAKE_INSTALL_PREFIX}/lib" 
+    CMAKE_FIND_ROOT_PATH_BOTH)
+find_library(WIRINGPIDEV_LIB wiringPiDev HINTS "${CMAKE_INSTALL_PREFIX}/lib" 
+    CMAKE_FIND_ROOT_PATH_BOTH)
 
 set(SRC_FILES 
   gpio.c readall.c
 )
 
 include_directories (.)
+include_directories (./../wiringPi)
+include_directories (./../devLib)
 
 
 if ("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU")
