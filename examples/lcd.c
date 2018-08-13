@@ -118,7 +118,7 @@ void scrollMessage (int line, int width)
  *********************************************************************************
  */
 
-static void pingPong (int lcd, int cols)
+static void pingPong (int cols)
 {
   static int position = 0 ;
   static int dir      = 0 ;
@@ -172,7 +172,6 @@ static void waitForEnter (void)
 int main (int argc, char *argv[])
 {
   int i ;
-  int lcd ;
   int bits, rows, cols ;
 
   struct tm *t ;
@@ -279,7 +278,7 @@ int main (int argc, char *argv[])
     lcdPosition (lcdHandle, (cols - 10) / 2, 2) ;
     lcdPuts     (lcdHandle, buf) ;
 
-    pingPong (lcd, cols) ;
+    pingPong (cols) ;
   }
 
   return 0 ;
