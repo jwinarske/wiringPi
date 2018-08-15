@@ -31,8 +31,20 @@ matrix:
               - cd build3
               - cmake .. -GNinja
           script:  ninja
+
+        - env: test="x64 5.0 (cmake android)"
+          os: linux
+          dist: trusty
+          before_script:
+              - export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
+              - mkdir build4
+              - cd build4
+              - cmake -DCMAKE_TOOLCHAIN_FILE=$ANDROID_HOME/ndk-bundle/build/cmake/android.toolchain.cmake -DANDROID_PLATFORM=android-15 -DANDROID_ABI=armeabi-v7a ..
+          script:  make
+
 addons:
     apt:
         packages:
             - cmake
             - ninja-build
+            - ndk-bundle
