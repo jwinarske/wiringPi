@@ -2,44 +2,41 @@ language: c
 
 matrix:
     include:
-        - env: test="x64 4.8.4 (cmake)"
+        - env: test="x64 4.8.4 (CMake gcc)"
           os: linux
           dist: trusty
           compiler: gcc
           before_script:
-              - mkdir build1
-              - cd build1
+              - mkdir build1 && cd build1
               - cmake ..
           script:  make
 
-        - env: test="x64 5.0 (cmake)"
+        - env: test="x64 5.0 (CMake clang)"
           os: linux
           dist: trusty
           compiler: clang
           before_script:
-              - mkdir build2
-              - cd build2
+              - mkdir build2 && cd build2
               - cmake ..
           script:  make
 
-        - env: test="x64 5.0 (cmake ninja)"
+        - env: test="x64 5.0 (CMake clang - Ninja)"
           os: linux
           dist: trusty
           compiler: clang
           before_script:
-              - mkdir build3
-              - cd build3
+              - mkdir build3 && cd build3
               - cmake .. -GNinja
           script:  ninja
 
-        - env: test="x64 5.0 (cmake android-15)"
+        - env: test="x64 5.0 (CMake Android-15 armeabi-v7a)"
           language: 
               - c
               - android
+          sudo: true
           os: linux
           dist: trusty
-          compiler: clang
-          sudo: true
+          compiler: gcc
           install: 
               - echo y | sdkmanager "ndk-bundle"
               - echo y | sdkmanager "cmake;3.6.4111459"
@@ -47,7 +44,7 @@ matrix:
               - export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
               - mkdir build4
               - cd build4
-              - CC=clang cmake -DCMAKE_TOOLCHAIN_FILE=$ANDROID_HOME/ndk-bundle/build/cmake/android.toolchain.cmake -DANDROID_PLATFORM=android-15 -DANDROID_ABI=armeabi-v7a ..
+              - cmake -DCMAKE_TOOLCHAIN_FILE=$ANDROID_HOME/ndk-bundle/build/cmake/android.toolchain.cmake -DANDROID_PLATFORM=android-15 -DANDROID_ABI=armeabi-v7a ..
           script:  make
 
 addons:
