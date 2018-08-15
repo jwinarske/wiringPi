@@ -49,7 +49,7 @@ matrix:
               - export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
               - mkdir build4
               - cd build4
-              - cmake -DCMAKE_TOOLCHAIN_FILE=$ANDROID_HOME/ndk-bundle/build/cmake/android.toolchain.cmake -DANDROID_PLATFORM=android-15 -DANDROID_ABI=armeabi-v7a ..
+              - CC=clang cmake -DCMAKE_TOOLCHAIN_FILE=$ANDROID_HOME/ndk-bundle/build/cmake/android.toolchain.cmake -DANDROID_PLATFORM=android-15 -DANDROID_ABI=armeabi-v7a ..
           script:  make
 
 addons:
