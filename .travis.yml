@@ -31,12 +31,10 @@ matrix:
 
         - env: test="x64 5.0 (CMake Android-15 armeabi-v7a)"
           language: 
-              - c
               - android
-          sudo: true
           os: linux
           dist: trusty
-          compiler: gcc
+          compiler: clang
           install: 
               - echo y | sdkmanager "ndk-bundle"
               - echo y | sdkmanager "cmake;3.6.4111459"
@@ -44,7 +42,9 @@ matrix:
               - export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
               - mkdir build4
               - cd build4
-              - cmake -DCMAKE_TOOLCHAIN_FILE=$ANDROID_HOME/ndk-bundle/build/cmake/android.toolchain.cmake -DANDROID_PLATFORM=android-15 -DANDROID_ABI=armeabi-v7a ..
+              - cmake --version
+              - $ANDROID_HOME/cmake/3.6.4111459/bin/cmake --version
+              - $ANDROID_HOME/cmake/3.6.4111459/bin/cmake -DCMAKE_TOOLCHAIN_FILE=$ANDROID_HOME/ndk-bundle/build/cmake/android.toolchain.cmake -DANDROID_PLATFORM=android-15 -DANDROID_ABI=armeabi-v7a ..
           script:  make
 
 addons:
