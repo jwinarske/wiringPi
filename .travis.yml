@@ -1,4 +1,9 @@
-language: c
+language: 
+  - c
+  - android
+
+install:
+  - echo y | sdkmanager "ndk-bundle"
 
 matrix:
     include:
@@ -47,4 +52,3 @@ addons:
         packages:
             - cmake
             - ninja-build
-            - ndk-bundle
