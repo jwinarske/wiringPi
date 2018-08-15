@@ -30,12 +30,7 @@ matrix:
           script:  ninja
 
         - env: test="x64 5.0 (CMake Android-15 armeabi-v7a)"
-          language: 
-              - android
-              - c
-          os: linux
-          dist: trusty
-          compiler: clang
+          language: android
           install: 
               - echo y | sdkmanager "ndk-bundle"
               - echo y | sdkmanager "cmake;3.6.4111459"
