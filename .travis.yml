@@ -1,0 +1,27 @@
+language: c
+
+matrix:
+    include:
+        - env: test="x64 4.8.4 (cmake)"
+          os: linux
+          dist: trusty
+          compiler: gcc
+          before_script:
+              - mkdir build1
+              - cd build1
+              - cmake .. -DCMAKE_INSTALL_PREFIX=./out
+          script:  make install
+
+        - env: test="x64 5.0 (cmake)"
+          os: linux
+          dist: trusty
+          compiler: clang
+          before_script:
+              - mkdir build2
+              - cd build2
+              - cmake .. -DCMAKE_INSTALL_PREFIX=./out
+          script:  make install
+addons:
+    apt:
+        packages:
+            - cmake
