@@ -7,8 +7,8 @@ matrix:
           dist: trusty
           compiler: gcc
           before_script:
-              - mkdir build1
-              - cd build1
+              - mkdir build
+              - cd build
               - cmake ..
           script:  make
 
@@ -17,11 +17,22 @@ matrix:
           dist: trusty
           compiler: clang
           before_script:
-              - mkdir build2
-              - cd build2
+              - mkdir build
+              - cd build
               - cmake ..
-          script:  mak
+          script:  make
+
+        - env: test="x64 5.0 (cmake ninja)"
+          os: linux
+          dist: trusty
+          compiler: clang
+          before_script:
+              - mkdir build
+              - cd build
+              - cmake .. -GNinja
+          script:  autoninja
 addons:
     apt:
         packages:
             - cmake
+            - ninja
