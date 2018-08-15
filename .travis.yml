@@ -2,14 +2,12 @@ language:
   - c
   - android
 
-install:
-  - echo y | sdkmanager "ndk-bundle"
-
 matrix:
     include:
         - env: test="x64 4.8.4 (cmake)"
           os: linux
           dist: trusty
+          language: c
           compiler: gcc
           before_script:
               - mkdir build1
@@ -20,6 +18,7 @@ matrix:
         - env: test="x64 5.0 (cmake)"
           os: linux
           dist: trusty
+          language: c
           compiler: clang
           before_script:
               - mkdir build2
@@ -30,6 +29,7 @@ matrix:
         - env: test="x64 5.0 (cmake ninja)"
           os: linux
           dist: trusty
+          language: c
           compiler: clang
           before_script:
               - mkdir build3
@@ -40,6 +40,10 @@ matrix:
         - env: test="x64 5.0 (cmake android)"
           os: linux
           dist: trusty
+          language: android
+          sudo: true
+          install: 
+              - echo y | sdkmanager "ndk-bundle"
           before_script:
               - export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
               - mkdir build4
