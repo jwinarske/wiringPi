@@ -32,6 +32,7 @@ matrix:
         - env: test="x64 5.0 (CMake Android-15 armeabi-v7a)"
           language: 
               - android
+              - c
           os: linux
           dist: trusty
           compiler: clang
