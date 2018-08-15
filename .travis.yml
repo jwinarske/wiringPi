@@ -1,11 +1,8 @@
-language: 
-  - c
-  - android
+language: c
 
 matrix:
     include:
         - env: test="x64 4.8.4 (cmake)"
-          language: c
           os: linux
           dist: trusty
           compiler: gcc
@@ -16,7 +13,6 @@ matrix:
           script:  make
 
         - env: test="x64 5.0 (cmake)"
-          language: c
           os: linux
           dist: trusty
           compiler: clang
@@ -27,7 +23,6 @@ matrix:
           script:  make
 
         - env: test="x64 5.0 (cmake ninja)"
-          language: c
           os: linux
           dist: trusty
           compiler: clang
@@ -38,13 +33,16 @@ matrix:
           script:  ninja
 
         - env: test="x64 5.0 (cmake android-15)"
-          language: android
+          language: 
+              - c
+              - android
           os: linux
           dist: trusty
           compiler: clang
           sudo: true
           install: 
               - echo y | sdkmanager "ndk-bundle"
+              - echo y | sdkmanager "cmake;3.6.4111459"
           before_script:
               - export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
               - mkdir build4
@@ -55,5 +53,5 @@ matrix:
 addons:
     apt:
         packages:
-            - cmake;3.6.4111459
+            - cmake
             - ninja-build
