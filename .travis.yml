@@ -1,5 +1,4 @@
 language: c
-#sudo: true
 
 matrix:
     include:
@@ -30,9 +29,8 @@ matrix:
           before_script:
               - mkdir build3
               - cd build3
-              # this requires sudo for some reason
               - cmake .. -GNinja
-          script:  autoninja -C build.ninja
+          script:  ninja
 addons:
     apt:
         packages:
