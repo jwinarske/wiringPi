@@ -55,5 +55,5 @@ matrix:
 addons:
     apt:
         packages:
-            - cmake
+            - cmake;3.6.4111459
             - ninja-build
