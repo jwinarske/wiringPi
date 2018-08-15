@@ -9,8 +9,8 @@ matrix:
           before_script:
               - mkdir build1
               - cd build1
-              - cmake .. -DCMAKE_INSTALL_PREFIX=./out
-          script:  make install
+              - cmake ..
+          script:  make
 
         - env: test="x64 5.0 (cmake)"
           os: linux
@@ -19,8 +19,8 @@ matrix:
           before_script:
               - mkdir build2
               - cd build2
-              - cmake .. -DCMAKE_INSTALL_PREFIX=./out
-          script:  make install
+              - cmake ..
+          script:  mak
 addons:
     apt:
         packages:
