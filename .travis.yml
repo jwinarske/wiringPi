@@ -1,0 +1,50 @@
+language: c
+
+matrix:
+    include:
+        - env: test="x64 4.8.4 (gcc)"
+          os: linux
+          dist: trusty
+          sudo: required
+          compiler: gcc
+          script:  source ./build
+
+        - env: test="x64 5.0 (clang)"
+          os: linux
+          dist: trusty
+          sudo: required          
+          compiler: clang
+          script:  source ./build
+
+        - env: test="x64 4.8.4 (CMake gcc)"
+          os: linux
+          dist: trusty
+          compiler: gcc
+          before_script:
+              - mkdir build1 && cd build1
+              - cmake ..
+          script:  make
+
+        - env: test="x64 5.0 (CMake clang)"
+          os: linux
+          dist: trusty
+          compiler: clang
+          before_script:
+              - mkdir build2 && cd build2
+              - cmake ..
+          script:  make
+
+        - env: test="x64 5.0 (CMake clang - Ninja)"
+          os: linux
+          dist: trusty
+          compiler: clang
+          before_script:
+              - mkdir build3 && cd build3
+              - cmake .. -GNinja
+          script:  ninja
+
+addons:
+    apt:
+        packages:
+            - cmake
+            - ninja-build
