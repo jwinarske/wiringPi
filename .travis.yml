@@ -5,12 +5,14 @@ matrix:
         - env: test="x64 4.8.4 (gcc)"
           os: linux
           dist: trusty
+          sudo: required
           compiler: gcc
           script:  source ./build
 
         - env: test="x64 5.0 (clang)"
           os: linux
           dist: trusty
+          sudo: required          
           compiler: clang
           script:  source ./build
 
