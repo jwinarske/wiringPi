@@ -28,7 +28,6 @@ Thanks!
   
 CMake
 
-  create build folder
   git clone https://github.com/jwinarske/wiringPi.git
   mkdir build
   cd build
